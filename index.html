@@ -1,1 +1,466 @@
-hello
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jiyi Zhang @ NUS</title>
+        <style>
+            :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --light: #ecf0f1;
+            --text: #34495e;
+            --text-light: #7f8c8d;
+            }
+            body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            margin: 0;
+            background-color: #fff;
+            }
+            .page-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            }
+            .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            }
+            header {
+            padding: 1.5rem;
+            text-align: center;
+            flex: 0 0 300px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: white;
+            overflow-y: auto;
+            }
+            header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            }
+            header h1 {
+            margin: 0.5rem 0 0.25rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            }
+            header p {
+            color: var(--text);
+            margin: 0 0 1rem;
+            font-size: 1rem;
+            }
+            .social {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 1rem;
+            gap: 0.75rem;
+            }
+            .social li {
+            margin: 0;
+            }
+            .social a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            white-space: nowrap;
+            }
+            .social i {
+            margin-right: 4px;
+            text-align: center;
+            }
+            .content-wrapper {
+            padding: 2rem 3rem 3rem;
+            flex: 1;
+            background: white;
+            overflow-y: auto;
+            }
+            h2 {
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light);
+            font-weight: 600;
+            font-size: 1.5rem;
+            }
+            .publication-title, .patent-title {
+            color: var(--text);
+            font-size: 1.1rem;
+            line-height: 1.4;
+            }
+            .publication-authors, .patent-authors {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+            }
+            .publication-authors b, .patent-authors b {
+            color: var(--text-light);
+            font-weight: 600;
+            }
+            .publication-venue, .patent-info {
+            color: var(--secondary);
+            font-style: italic;
+            font-size: 0.9rem;
+            }
+            ul, ol {
+            padding-left: 2rem;
+            line-height: 1.8;
+            }
+            li {
+            margin-bottom: 0.5rem;
+            }
+            a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            }
+            a:hover {
+            color: var(--primary);
+            }
+            .timeline-sections {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            }
+            .timeline {
+            position: relative;
+            flex: 1 1 100%;
+            min-width: 100%;
+            margin-bottom: 0;
+            }
+            .title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            }
+            .icon-box {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            }
+            .icon-box ion-icon {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            }
+            .h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+            }
+            .timeline-list {
+            list-style: none;
+            padding-left: 0;
+            position: relative;
+            margin-top: 0;
+            margin-bottom: 0;
+            }
+            .timeline-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 14px;
+            width: 1px;
+            height: 100%;
+            background: #e1e8ed;
+            }
+            .timeline-item {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 0;
+            }
+            .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 2px solid white;
+            box-shadow: 0 0 0 1px rgba(52, 152, 219, 0.3);
+            z-index: 1;
+            }
+            .timeline-item-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0;
+            color: var(--primary);
+            text-align: left;
+            }
+            .timeline-item-time {
+            display: block;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            font-weight: normal;
+            margin-bottom: 0;
+            text-align: left;
+            }
+            .timeline-text {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--text);
+            margin-top: 0.2rem;
+            margin-bottom: 0;
+            text-align: left;
+            }
+            .timeline-item > span {
+            display: none;
+            }
+            @media (max-width: 767px) {
+            .wrapper {
+            flex-direction: column;
+            }
+            header {
+            position: static;
+            height: auto;
+            padding: 1.5rem;
+            }
+            .content-wrapper {
+            padding: 1.5rem;
+            }
+            .social {
+            flex-wrap: wrap;
+            }
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </head>
+    <body>
+        <div class="page-container">
+            <div class="wrapper">
+                <header>
+                    <img src="profile.jpg" width="300" height="300" alt="Jiyi Zhang">
+                    <h1>Jiyi Zhang</h1>
+                    <!-- Social links in one line -->
+                    <ul class="social">
+                        <li><i class="fa-regular fa-envelope"></i> <a href="mailto:jiyizhang@u.nus.edu">Email</a></li>
+                        <li><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/jiyizhang93/">LinkedIn</a></li>
+                        <li><i class="fa-brands fa-google"></i> <a href="https://scholar.google.com/citations?user=QDGM9SsAAAAJ&hl=en">Scholar</a></li>
+                    </ul>
+                    <!-- Timeline Sections Container -->
+                    <div class="timeline-sections">
+                        <!-- Education Timeline Section -->
+                        <section class="timeline">
+                            <div class="title-wrapper">
+                                <div class="icon-box">
+                                    <ion-icon name="briefcase-outline"></ion-icon>
+                                </div>
+                                <h3 class="h3">Experience</h3>
+                            </div>
+                            <ol class="timeline-list">
+                                <li class="timeline-item">
+                                    <h4 class="h4 timeline-item-title">TikTok</h4>
+                                    <div class="timeline-item-time">2024 — Present</div>
+                                    <p class="timeline-text">
+                                        Machine Learning Engineer
+                                    </p>
+                                </li>
+                                <li class="timeline-item">
+                                    <h4 class="h4 timeline-item-title">PayPal</h4>
+                                    <div class="timeline-item-time">2018 — 2024</div>
+                                    <p class="timeline-text">
+                                        Research Scientist
+                                    </p>
+                                </li>
+                                <li class="timeline-item">
+                                    <h4 class="h4 timeline-item-title">Lazada</h4>
+                                    <div class="timeline-item-time">2018 — 2018</div>
+                                    <p class="timeline-text">
+                                        Research Intern
+                                    </p>
+                                </li>
+                            </ol>
+                        </section>
+                        <section class="timeline">
+                            <div class="title-wrapper">
+                                <div class="icon-box">
+                                    <ion-icon name="school-outline"></ion-icon>
+                                </div>
+                                <h3 class="h3">Education</h3>
+                            </div>
+                            <ol class="timeline-list">
+                                <li class="timeline-item">
+                                    <h4 class="h4 timeline-item-title">National University of Singapore</h4>
+                                    <div class="timeline-item-time">2018 - 2022</div>
+                                    <p class="timeline-text">
+                                        Ph.D. in Computer Science<br>
+                                        Advisor: Prof. Chang Ee-Chen
+                                    </p>
+                                </li>
+                                <li class="timeline-item">
+                                    <h4 class="h4 timeline-item-title">National University of Singapore </h4>
+                                    <div class="timeline-item-time">2014 - 2018</div>
+                                    <p class="timeline-text">
+                                        Double Degree in Computer Science and Mathematics<br>
+                                        First Class Honours
+                                    </p>
+                                </li>
+                                <li class="timeline-item">
+                                    <h4 class="h4 timeline-item-title">Hwa Chong Institution</h4>
+                                    <div class="timeline-item-time">2010 - 2013</div>
+                                    <p class="timeline-text">
+                                        Singapore-Cambridge GCE A Level<br>
+                                        Hwa Chong Diploma
+                                    </p>
+                                </li>
+                            </ol>
+                        </section>
+                    </div>
+                </header>
+                <main class="content-wrapper">
+                    <h2 id="about">About Me</h2>
+                    <p>I am a Machine Learning Engineer at TikTok, with a Ph.D. from the National University of Singapore. My work bridges research and industry, with a focus on building robust and secure AI systems. My research interests include diffusion models, large language models, graph-based learning, digital watermarking, and AI security. In the industry, I have applied these areas to real-world systems, contributing to recommendation systems, content moderation, and risk detection.</p>
+                    <h2 id="publications">Publications</h2>
+                    <ol>
+                        <li>
+                            <div class="publication-title">Mitigating Adversarial Attacks by Distributing Different Copies to Different Buyers</div>
+                            <div class="publication-authors"><b>Jiyi Zhang</b>, Han Fang, Wesley Joon-Wie Tann, Ke Xu, Chao Fang, Ee-Chien Chang</div>
+                            <div class="publication-venue">Proceedings of the 2023 ACM on Asia Conference on Computer and Communications Security (AsiaCCS)</div>
+                        </li>
+                        <li>
+                            <div class="publication-title">Confusing and Detecting ML Adversarial Attacks with Injected Attractors</div>
+                            <div class="publication-authors"><b>Jiyi Zhang</b>, Ee-Chien Chang, Hwee Kuan Lee</div>
+                            <div class="publication-venue">Proceedings of the 2022 ACM on Asia Conference on Computer and Communications Security (AsiaCCS)</div>
+                        </li>
+                        <li>
+                            <div class="publication-title">Common Component in Black-Boxes Is Prone to Attacks</div>
+                            <div class="publication-authors"><b>Jiyi Zhang</b>, Wesley Joon-Wie Tann, Ee-Chien Chang, Hwee Kuan Lee</div>
+                            <div class="publication-venue">26th European Symposium on Research in Computer Security (ESORICS)</div>
+                        </li>
+                        <li>
+                            <div class="publication-title">Finding Input Data Domains of Image Classification Models with Hard-Label Black-Box Access</div>
+                            <div class="publication-authors"><b>Jiyi Zhang</b>, Han Fang, Ee-Chien Chang</div>
+                            <div class="publication-venue">Proceedings of the 32nd ACM International Conference on Multimedia, 2024 (MM)</div>
+                        </li>
+                        <li>
+                            <div class="publication-title">Neural Network Inversion in Adversarial Setting via Background Knowledge Alignment</div>
+                            <div class="publication-authors">Ziqi Yang, <b>Jiyi Zhang</b>, Ee-Chien Chang, Zhenkai Liang</div>
+                            <div class="publication-venue">Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security (CCS)</div>
+                        </li>
+                        <li>
+                            <div class="publication-title">Tracing the origin of adversarial attack for forensic investigation and deterrence</div>
+                            <div class="publication-authors">Han Fang, <b>Jiyi Zhang</b>, Yupeng Qiu, Jiayang Liu, Ke Xu, Chengfang Fang, Ee-Chien Chang</div>
+                            <div class="publication-venue">IEEE/CVF International Conference on Computer Vision, 2023 (ICCV)</div>
+                        </li>
+                        <li>
+                            <div class="publication-title">Flow-Based Robust Watermarking with Invertible Noise Layer for Black-Box Distortions</div>
+                            <div class="publication-authors">Han Fang, Yupeng Qiu, Kejiang Chen, <b>Jiyi Zhang</b>, Weiming Zhang, Ee-Chien Chang</div>
+                            <div class="publication-venue">Proceedings of the AAAI Conference on Artificial Intelligence, 2023 (AAAI)</div>
+                        </li>
+                        <li>
+                            <div class="publication-title">De-END: Decoder-driven Watermarking Network</div>
+                            <div class="publication-authors">Han Fang, Zhen Jia, Yupeng Qiu, <b>Jiyi Zhang</b>, Weiming Zhang, Ee-Chien Chang</div>
+                            <div class="publication-venue">IEEE Transactions on Multimedia, 2022 (TMM)</div>
+                        </li>
+                        <li>
+                            <div class="publication-title">DP 2 Dataset Protection by Data Poisoning</div>
+                            <div class="publication-authors">Han Fang, Yupeng Qiu, Guorui Qin, <b>Jiyi Zhang</b>, Kejiang Chen, Weiming Zhang, Ee-Chien Chang</div>
+                            <div class="publication-venue">IEEE Transactions on Dependable and Secure Computing, 2024 (TDSC)</div>
+                        </li>
+                    </ol>
+                    <h2 id="patents">Patents</h2>
+                    <ol>
+                        <li>
+                            <div class="patent-title">Interactive Silent Liveness Detection</div>
+                            <div class="patent-authors"><b>Jiyi Zhang</b>, Quan Jin Ferdinand Tang</div>
+                            <div class="patent-info">US Patent 11,922,732, 2024</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Watermark as Honeypot for Adversarial Defense</div>
+                            <div class="patent-authors"><b>Jiyi Zhang</b></div>
+                            <div class="patent-info">US Patent 11,501,136, 2022</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Automatic document processing</div>
+                            <div class="patent-authors">Quan Jin Ferdinand Tang, <b>Jiyi Zhang</b>, Xiaodong Yu, et al.</div>
+                            <div class="patent-info">US Patent 11,455,713, 2022</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Ensemble Method for Face Recognition Deep Learning Models</div>
+                            <div class="patent-authors">Xiaodong Yu, Quan Jin Ferdinand Tang, <b>Jiyi Zhang</b>, Yuzhen Zhuo</div>
+                            <div class="patent-info">US Patent 11,689,526, 2023</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Image forgery detection via headpose estimation</div>
+                            <div class="patent-authors">Xiaodong Yu, Jiazheng Zhang, <b>Jiyi Zhang</b>, et al.</div>
+                            <div class="patent-info">US Patent 12,067,475, 2024</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Removing Clarity Issues From Images To Improve Readability</div>
+                            <div class="patent-authors"><b>Jiyi Zhang</b></div>
+                            <div class="patent-info">US Patent App. 17/645,484, 2023</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Real-time Media Alteration Using Generative Techniques</div>
+                            <div class="patent-authors"><b>Jiyi Zhang</b>, Zhe Chen, Jiazheng Zhang, et al.</div>
+                            <div class="patent-info">US Patent App. 18/512,007, 2023</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Fraud Detection for Signed Documents</div>
+                            <div class="patent-authors">Quan Jin Ferdinand Tang, <b>Jiyi Zhang</b>, Jiazheng Zhang, et al.</div>
+                            <div class="patent-info">US Patent App. 18/051,580, 2024</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Document Similarity Learning by Heterogeneous Group Relationships</div>
+                            <div class="patent-authors">Zhe Chen, <b>Jiyi Zhang</b>, Quan Jin Ferdinand Tang</div>
+                            <div class="patent-info">US Patent App. 18/461,299, 2023</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Seller Risk Detection by Product Community and Supply Chain Modelling</div>
+                            <div class="patent-authors">Zhe Chen, <b>Jiyi Zhang</b>, Ting Lin, Quan Jin Ferdinand Tang</div>
+                            <div class="patent-info">US Patent App. 18/082,870, 2022</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Two-Sided Machine Learning Framework for Pointer Movement-Based Bot Detection</div>
+                            <div class="patent-authors">Zhe Chen, <b>Jiyi Zhang</b>, Hewen Wang, et al.</div>
+                            <div class="patent-info">US Patent App. 18/146,738, 2022</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Detection of Physical Tampering on Documents</div>
+                            <div class="patent-authors">Jiazheng Zhang, Yuzhen Zhuo, <b>Jiyi Zhang</b></div>
+                            <div class="patent-info">US Patent App. 17/850,602, 2023</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Image Forgery Detection via Pixel-Metadata Consistency Analysis</div>
+                            <div class="patent-authors">Shanshan Peng, Jiazheng Zhang, <b>Jiyi Zhang</b>, et al.</div>
+                            <div class="patent-info">US Patent App. 17/374,439, 2023</div>
+                        </li>
+                        <li>
+                            <div class="patent-title">Machine Learning Model for Image Forgery Detection</div>
+                            <div class="patent-authors">Zhe Chen, Panpan Qi, Jiazheng Zhang, <b>Jiyi Zhang</b>, Quan Jin Ferdinand Tang</div>
+                            <div class="patent-info">US Patent App. 18/189,044, 2023</div>
+                        </li>
+                    </ol>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
